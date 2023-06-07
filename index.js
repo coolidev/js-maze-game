@@ -148,12 +148,12 @@ horizontals.forEach((row, rowIndex) => {
             rowIndex * unitLengthY + unitLengthY,
             unitLengthX,
             5, {
-                label: 'Wall',
-                isStatic: true,
-                render: { 
-                    fillStyle: '#f72585'
-                }
+            label: 'Wall',
+            isStatic: true,
+            render: {
+                fillStyle: '#f72585'
             }
+        }
         );
         World.add(world, wall);
     });
@@ -168,12 +168,12 @@ verticals.forEach((row, rowIndex) => {
             rowIndex * unitLengthY + unitLengthY / 2,
             5,
             unitLengthY, {
-                label: 'Wall',
-                isStatic: true,
-                render: { 
-                    fillStyle: '#ccff33'
-                }
+            label: 'Wall',
+            isStatic: true,
+            render: {
+                fillStyle: '#ccff33'
             }
+        }
         );
         World.add(world, wall);
     })
@@ -185,12 +185,12 @@ const target = Bodies.rectangle(
     height - unitLengthY / 3,
     unitLengthX * 1.4,
     unitLengthY * 1.4, {
-        label: 'Target',
-        isStatic: true,
-        render: { 
-            fillStyle: '#97DC21'
-        }
+    label: 'Target',
+    isStatic: true,
+    render: {
+        fillStyle: '#97DC21'
     }
+}
 );
 World.add(world, target);
 
@@ -203,24 +203,24 @@ const square = Bodies.rectangle(
     unitLengthY / 2,
     unitLengthX * .5,
     unitLengthY * .5, {
-        label: 'Square',
-        render: { 
-            fillStyle: '#f72585'
-        }
+    label: 'Square',
+    render: {
+        fillStyle: '#f72585'
     }
+}
 )
 World.add(world, square)
 
 document.addEventListener('keydown', e => {
-  const { x, y } = square.velocity;
-  if (e.key === 'ArrowUp'){
-      Body.setVelocity(square, {x: x, y: y - 1})
-  } else if (e.key === 'ArrowRight'){
-      Body.setVelocity(square, {x: x + 1, y})
-  } else if (e.key === 'ArrowDown'){
-    Body.setVelocity(square, {x: x, y: y + 1})
-  } else if (e.key === 'ArrowLeft'){
-        Body.setVelocity(square, {x: x - 1, y})
+    const { x, y } = square.velocity;
+    if (e.key === 'ArrowUp') {
+        Body.setVelocity(square, { x: x, y: y - 1 })
+    } else if (e.key === 'ArrowRight') {
+        Body.setVelocity(square, { x: x + 1, y })
+    } else if (e.key === 'ArrowDown') {
+        Body.setVelocity(square, { x: x, y: y + 1 })
+    } else if (e.key === 'ArrowLeft') {
+        Body.setVelocity(square, { x: x - 1, y })
     }
 })
 
@@ -232,17 +232,16 @@ Events.on(engine, 'collisionStart', event => {
         const labels = ['Square', 'Target'];
 
         if (
-            labels.includes(collision.bodyA.label) && 
+            labels.includes(collision.bodyA.label) &&
             labels.includes(collision.bodyB.label)
-            )
-            {
-                document.querySelector('.winner').classList.remove('hidden');
-                world.gravity.y = 1;
-                world.bodies.forEach(body => {
-                    if (body.label === 'Wall'){
-                        Body.setStatic(body, false);
-                    }
-                });  
-            }
+        ) {
+            document.querySelector('.winner').classList.remove('hidden');
+            world.gravity.y = 1;
+            world.bodies.forEach(body => {
+                if (body.label === 'Wall') {
+                    Body.setStatic(body, false);
+                }
+            });
+        }
     })
 })
