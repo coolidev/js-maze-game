@@ -5,10 +5,12 @@ body {
 .hidden {
     display: none !important;
 }
-h1{
+
+h1 {
     color: white;
     font-size: 5rem;
 }
+
 .winner {
     display: flex;
     justify-content: center;
